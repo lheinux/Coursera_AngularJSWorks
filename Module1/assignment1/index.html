@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LunchCheck">
+<head>
+    <meta charset="UTF-8">
+    <title>Lunch Checker</title>
+    <style>
+        .container {
+            margin: auto;
+            padding: 20px;
+            border: 5px solid #ccc;
+            width: 400px;
+            background-color: #ECF0F1;
+        }
+        h1 {
+            color: #679436;
+            text-align: center;
+        }
+        .message-success {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .message-error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 98%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            margin: auto;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hint {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        body{
+            background-color: #EBF2FA;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" ng-controller="LunchCheckController">
+        <h1>Lunch Checker!</h1>
+
+        <input type="text"
+               id="lunch-menu"
+               ng-model="menuItems"
+               placeholder="list comma separated dishes you usually eat"
+               aria-label="List of lunch items separated by commas">
+
+        <div class="hint">
+            * We do NOT consider an empty item (e.g., `, ,` or `,item,,item`) as an item towards the count.
+        </div>
+
+        <button ng-click="checkIfTooMuch()">
+            Check If Too Much
+        </button>
+
+        <div class="message"
+             ng-class="{'message-error': isTooMuch, 'message-success': !isTooMuch && message}"
+             aria-live="polite">
+            {{ message }}
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
